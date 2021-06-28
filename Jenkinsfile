@@ -1,10 +1,10 @@
 pipeline{
- agent any
+  agent any
   stages{
     stage('docker build'){
 	  steps {	    
-	    sh "echo ${BUILD_NUMBER}"
-	    sh "docker build --no-cache -t kapilgupta15n/frontend:${BUILD_NUMBER} ."
+	    sh 'echo ${BUILD_NUMBER}'
+	    sh "docker build -t kapilgupta15n/frontend:${BUILD_NUMBER} ."
 	  }
 	}
 	stage ('docker push'){
@@ -19,7 +19,7 @@ pipeline{
 	    sh "docker run -d --restart=always --name angularapp -p 4200:4200 kapilgupta15n/frontend:${env.BUILD_NUMBER}"
 	  }
 	}
-  }	
+}	
   post{
     always {
 	  deleteDir() /* cleanup the workspace */
