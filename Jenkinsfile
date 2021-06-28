@@ -4,7 +4,7 @@ pipeline{
     stage('docker build'){
 	    steps {	    
 	      sh 'echo ${BUILD_NUMBER}'
-	      sh "docker build -t kapilgupta15n/frontend:${BUILD_NUMBER} ."
+	      sh "docker build --no-cache -t kapilgupta15n/frontend:${BUILD_NUMBER} ."
 	    }
 	  }
 	  stage ('docker push') {
@@ -21,4 +21,9 @@ pipeline{
 	    }
 	  }
   }	
+  post {
+    always {
+      deleteDir() /* cleanup the workspace */
+    }
+  }
 }
