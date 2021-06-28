@@ -17,7 +17,7 @@ pipeline{
     }
 	  stage ('Launch Container') {
 	    steps{
-	      sh "docker run -d --restart=always --name angularapp -p 80:4200 kapilgupta15n/frontend:${env.BUILD_NUMBER}"
+	      sh "docker run -d --restart=always --name angularfrontend -p 80:4200 kapilgupta15n/frontend:${env.BUILD_NUMBER}"
 	    }
 	  }
   }	
